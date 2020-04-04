@@ -38,3 +38,13 @@ Now to access it, get the file in the right directory
 with shelve.open("filename") as f:
     listOrDictionary = f["key"]
 ```
+
+
+## JSON
+
+JSON files are available on the net, these map to dictionaries
+```
+import json
+with open("data/us-states.json") as fd: 
+    data = json.load(fd)
+```

@@ -2,6 +2,13 @@
 
 [Pandas API Quick Reference](https://pandas.pydata.org/pandas-docs/version/0.22.0/api.html)
 
+Quick code snippets
+
+```
+df[['col1','col2']].values
+```
+The above gives a numpy ndarray
+
 **Rename column**
 ```
 df.rename({columns = 'old_col':'new_col', inplace = True})
