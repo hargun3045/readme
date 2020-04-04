@@ -90,9 +90,7 @@ Axis = 0 means each consideration will be across the row index
 
 Numpy note on dimensions
 https://stackoverflow.com/questions/15680593/numpy-1d-array-with-various-shape
-
-
-```
+<!-- 
 
 ```
 
@@ -100,11 +98,8 @@ https://stackoverflow.com/questions/15680593/numpy-1d-array-with-various-shape
 
 ```
 
-
-
 ```
 
-```
 
 
 ```
@@ -116,20 +111,6 @@ https://stackoverflow.com/questions/15680593/numpy-1d-array-with-various-shape
 
 ```
 
-
-```
-
-```
-
-
-```
-
-```
-
-
-```
-
-```
 
 ```
 
@@ -164,10 +145,6 @@ https://stackoverflow.com/questions/15680593/numpy-1d-array-with-various-shape
 
 ```
 
-```
-
-```
-
 
 ```
 
@@ -196,6 +173,19 @@ https://stackoverflow.com/questions/15680593/numpy-1d-array-with-various-shape
 
 ```
 
+```
+
+```
+
+
+```
+
+```
+
+
+```
+
+```
 
 ```
 
@@ -205,3 +195,13 @@ https://stackoverflow.com/questions/15680593/numpy-1d-array-with-various-shape
 ```
 
 ```
+
+
+```
+
+```
+
+
+```
+
+``` -->
