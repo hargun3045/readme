@@ -1,11 +1,43 @@
 Go to code chunks here
 
 ```
+conda create -n name (packages)
+
+pip install -r requirements.txt
+```
+
+#### 
+
+Video link to setup conda environment kernel for a notebook
+
+[ipykernel](https://www.youtube.com/watch?v=6kXLUvsnhuI)
+
+Or official anaconda documentation says you must do a source fastai2 activate and it will show you the option
+
+
+
+```
 $ git config --global user.name
 ```
 
 ```
 $ git config --global user.name "Mona Lisa"
+```
+
+>Add Remote directory
+```
+git remote add origin 'repo-url'
+
+```
+
+> Convert iPython notebook to python
+
+Assuming you have already pip installed ipynb-py-convert
+
+```
+ipynb-py-convert examples/plot.ipynb examples/plot.py
+
+
 ```
 
 ## Pickling

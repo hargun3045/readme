@@ -15,6 +15,17 @@ df.rename({columns = 'old_col':'new_col', inplace = True})
 
 ```
 
+>Change column positions
+
+```
+cols = df.cols
+
+new_cols = ['a','b','c','d']
+
+df = df[new_cols]
+
+```
+
 **initial setup of dataframe**
 ```
 df = pd.read_csv('sales1.csv',header = 0, index_col = False, names = ['title', 'sold','price','royalty'])
