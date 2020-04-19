@@ -1,5 +1,17 @@
 Go to code chunks here
 
+>Website building
+
+1. How to set up Jekyll
+
+[Jekyll basic](https://jekyllrb.com/docs/)
+
+2. How to set up mmistakes
+
+[mmistakes basic](https://jekyllrb.com/docs/)
+
+
+
 ```
 conda create -n name (packages)
 
