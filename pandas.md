@@ -1,5 +1,15 @@
 >Pandas helpful code
 
+Pandas export to csv
+
+```
+df.to_csv(filename, index = False)
+```
+>Drop a column
+
+[How to drop a column](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html	
+)
+
 [Pandas API Quick Reference](https://pandas.pydata.org/pandas-docs/version/0.22.0/api.html)
 
 Quick code snippets
@@ -11,7 +21,7 @@ The above gives a numpy ndarray
 
 **Rename column**
 ```
-df.rename({columns = 'old_col':'new_col', inplace = True})
+df.rename({columns = {'old_col':'new_col'}, inplace = True)
 
 ```
 

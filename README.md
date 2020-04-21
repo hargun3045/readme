@@ -1,5 +1,11 @@
 Go to code chunks here
 
+
+>All, any
+
+[How do Python's any and all functions work?](https://stackoverflow.com/questions/19389490/how-do-pythons-any-and-all-functions-work)
+
+
 >Website building
 
 1. How to set up Jekyll
