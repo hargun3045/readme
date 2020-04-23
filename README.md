@@ -1,6 +1,25 @@
 Go to code chunks here
 
 
+>Convert 2 lists into a dictionary
+
+[How to convert lists to dictionary](https://stackoverflow.com/questions/209840/convert-two-lists-into-a-dictionary)
+
+
+> How to shuffle a list?
+
+Use python list functions, insert() and pop()
+
+[insert & pop](https://www.geeksforgeeks.org/python-shift-last-element-to-first-position-in-list/)
+
+Also, to get a list of 1 element
+
+```
+harlist[0]--> Element
+harlist[:1]--> List consisting single element
+
+```
+
 >All, any
 
 [How do Python's any and all functions work?](https://stackoverflow.com/questions/19389490/how-do-pythons-any-and-all-functions-work)

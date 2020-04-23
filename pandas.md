@@ -1,4 +1,30 @@
->Pandas helpful code
+# Pandas helpful code
+
+> How to map or apply values to entire dataframe series?
+
+```
+def square(x):
+    return x ** 2
+s.apply(square)
+```
+[Click here](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.apply.html#pandas.Series.apply) for link to documentation
+
+> How to add gaussian noise to a series
+
+```
+mu, sigma = 0, 0.1 
+# creating a noise with the same dimension as the dataset (2,2) 
+noise = np.random.normal(mu, sigma, [2,2]) 
+print(noise)
+```
+
+[link to](https://stackoverflow.com/questions/46093073/adding-gaussian-noise-to-a-dataset-of-floating-points-and-save-it-python?rq=1) stackoverflow answer
+
+>Change position of a column 
+in a pandas dataframe
+
+Change position of the list
+df = df[[df.columns[-1]] + list(df.columns[:-1])]
 
 Pandas export to csv
 
