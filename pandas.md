@@ -1,5 +1,38 @@
 # Pandas helpful code
 
+>Choose a dataframe with non-empty column
+
+```
+df = df[df['EPS'].notna()]
+```
+OR
+
+```
+df = df[pd.notnull(df['EPS'])]
+```
+[Remove null values from a column](https://stackoverflow.com/questions/13413590/how-to-drop-rows-of-pandas-dataframe-whose-value-in-a-certain-column-is-nan)
+
+>Make a pandas series as datetime
+
+```
+df['date'] = df['date'].astype('datetime64[ns]')
+```
+
+>Add a name to the index
+
+```
+df.index.name = 'date'
+```
+[How to add an index name](https://stackoverflow.com/questions/18022845/pandas-index-column-title-or-name)
+
+>Mapping a dictionary value to a pandas series
+
+```
+df['continent'] = df.country.map(mapping)
+```
+
+[How to map dictionary values to a pandas series](https://stackoverflow.com/questions/20250771/remap-values-in-pandas-column-with-a-dict)
+
 > How to map or apply values to entire dataframe series?
 
 ```
