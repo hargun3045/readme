@@ -1,5 +1,77 @@
 # Pandas helpful code
 
+>Axis to left side
+
+```
+from matplotlib import pyplot as plt
+
+f = plt.figure()
+ax = f.add_subplot(111)
+ax.yaxis.tick_right()
+plt.plot([2,3,4,5])
+plt.show()
+```
+
+
+>How to customize grids in subplots
+
+```
+fig3 = plt.figure(constrained_layout=True)
+gs = fig3.add_gridspec(3, 3)
+f3_ax1 = fig3.add_subplot(gs[0, :])
+f3_ax1.set_title('gs[0, :]')
+```
+
+[Creating custom gridspaces](https://matplotlib.org/3.2.1/tutorials/intermediate/gridspec.html)
+
+>Make a line chart with bar chart
+
+```
+fig = plt.figure()
+ax = ts.plot(kind="bar")   # barchart
+ax2 = ax.twinx()
+ax2.plot(ax.get_xticks(), df.rolling(10).mean()) #linechart
+```
+[Line chart with bar](https://stackoverflow.com/questions/33239937/python-bar-graph-and-line-graph-in-same-chart-with-pandas-matplotlib)
+>Plot bar chart with ax object
+
+```
+ax.bar(x,y,*params)
+```
+
+
+>Fix bar chart x labels
+
+```
+#set ticks every week
+ax.xaxis.set_major_locator(mdates.WeekdayLocator())
+#set major ticks format
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
+```
+
+[Link to italian blog with solution](https://scentellegher.github.io/programming/2017/05/24/pandas-bar-plot-with-formatted-dates.html)
+
+[Link to blog recommended by italian](https://pbpython.com/effective-matplotlib.html)
+
+>How to combine year, month, date in a single column pandas
+
+```
+df['Date']=pd.to_datetime(df.year*10000+df.month*100+df.day,format='%Y%m%d')
+```
+
+[Combine year month date pandas](https://stackoverflow.com/questions/48155787/how-to-combine-year-month-and-day-columns-to-single-datetime-column)
+
+>How to nicely print a dictionary using json?
+
+```
+import json
+print(json.dumps(dictionary, indent=4, sort_keys=True))
+```
+
+> How to plot a time series
+
+[Number of births per month](https://jakevdp.github.io/PythonDataScienceHandbook/04.09-text-and-annotation.html)
+
 >Choose a dataframe with non-empty column
 
 ```
@@ -80,7 +152,7 @@ The above gives a numpy ndarray
 
 **Rename column**
 ```
-df.rename({columns = {'old_col':'new_col'}, inplace = True)
+df.rename(columns = {'old_col':'new_col'}, inplace = True)
 
 ```
 

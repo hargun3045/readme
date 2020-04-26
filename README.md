@@ -1,5 +1,19 @@
 Go to code chunks here
 
+>How to convert list to string
+
+```
+# using list comprehension 
+listToStr = ' '.join([str(elem) for elem in s]) 
+```
+
+>Rounding floats with f-strings
+
+```
+x = 3.14159265
+print(f'pi = {x:.2f}')
+```
+
 
 >Convert 2 lists into a dictionary
 
