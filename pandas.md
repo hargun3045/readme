@@ -1,5 +1,14 @@
 # Pandas helpful code
 
+>Shuffle data
+
+```
+df.sample(frac=1)
+```
+
+[Stackoverflow - How to shuffle a dataframe?](https://stackoverflow.com/questions/29576430/shuffle-dataframe-rows)
+
+
 >Axis to left side
 
 ```

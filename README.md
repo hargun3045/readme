@@ -1,5 +1,9 @@
 Go to code chunks here
 
+>Use cases of numpy and pytorch tensor
+
+[What is the difference between pytorch & numpy](https://rickwierenga.com/blog/machine%20learning/numpy-vs-pytorch-linalg.html)
+
 >How to convert list to string
 
 ```
