@@ -1,6 +1,14 @@
 Go to code chunks here
 
+>What is softmax?
+
+[Medium article on softmax](https://medium.com/data-science-bootcamp/understand-the-softmax-function-in-minutes-f3a59641e86d)
+
 >Use cases of numpy and pytorch tensor
+
+>Understanding BCE Loss
+
+[Medium post on BCE Loss](https://towardsdatascience.com/understanding-binary-cross-entropy-log-loss-a-visual-explanation-a3ac6025181a)
 
 [What is the difference between pytorch & numpy](https://rickwierenga.com/blog/machine%20learning/numpy-vs-pytorch-linalg.html)
 
