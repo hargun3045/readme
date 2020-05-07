@@ -2,7 +2,7 @@ Go to code chunks here
 
 >What is softmax?
 
-[Medium article on softmax](https://medium.com/data-science-bootcamp/understand-the-softmax-function-in-minutes-f3a59641e86d)
+[Medium article on softmax](https://medium.com/data-science-bootcamp/understand-the-softmax-function-in-minutes-f3a59641e86d )
 
 >Use cases of numpy and pytorch tensor
 
@@ -150,6 +150,13 @@ Video link to setup conda environment kernel for a notebook
 [ipykernel](https://www.youtube.com/watch?v=6kXLUvsnhuI)
 
 Or official anaconda documentation says you must do a source fastai2 activate and it will show you the option
+
+## Docker 
+
+[Docker first build and examples](https://hub.docker.com/?overlay=onboarding&step=download)
+
+
+## Github
 
 
 

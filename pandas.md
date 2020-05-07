@@ -1,5 +1,17 @@
 # Pandas helpful code
 
+>How to make a mask?
+
+```
+mask = np.ones(size, dtype = 'int')
+```
+
+>Get a sampled collection
+
+```
+df.sample(size, replace = False)
+```
+
 >Shuffle data
 
 ```
