@@ -1,5 +1,10 @@
 # Pandas helpful code
 
+>How to vectorize a function to apply on entire array?
+
+[Vectorize function - map](https://stackoverflow.com/questions/35215161/most-efficient-way-to-map-function-over-numpy-array)
+
+
 >How to make a mask?
 
 ```

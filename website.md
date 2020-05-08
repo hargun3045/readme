@@ -1,5 +1,17 @@
 ## Code snippets for website building
 
+## Make tutorial
+
+Default goal, the first line of a makefile only will be executed
+
+>What is a target?
+
+Target is the function name
+
+Pre-requisites follow the target
+
+Recipe - "Hello MakerWorld"
+
 # Hugo
 
 >How to start a hugo server?

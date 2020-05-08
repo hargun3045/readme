@@ -1,5 +1,30 @@
 Go to code chunks here
 
+>How to make sure git always asks for username password?
+
+```
+git config --local credential.helper ""
+```
+
+[Ask for username](https://stackoverflow.com/questions/13103083/how-do-i-push-to-github-under-a-different-username)
+
+## How to clear command line terminal
+
+```
+control + U
+```
+
+[other handy tips](https://stackoverflow.com/questions/9679776/how-do-i-clear-delete-the-current-line-in-terminal)
+
+## What is make?
+
+[Tutorial](https://opensource.com/article/18/8/what-how-makefile)
+
+```
+target: prereq
+    recipe
+```
+
 >What is softmax?
 
 [Medium article on softmax](https://medium.com/data-science-bootcamp/understand-the-softmax-function-in-minutes-f3a59641e86d )
