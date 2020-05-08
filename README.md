@@ -8,10 +8,17 @@ Go to code chunks here
 
 [Complete tutorial](https://www.netlifycms.org/docs/jekyll/)
 
+
 >How to make sure git always asks for username password?
 
 ```
 git config --local credential.helper ""
+```
+
+Reverse operation 
+
+```
+git config --global credential.helper store
 ```
 
 [Ask for username](https://stackoverflow.com/questions/13103083/how-do-i-push-to-github-under-a-different-username)
