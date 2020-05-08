@@ -1,5 +1,13 @@
 Go to code chunks here
 
+>Netlify app to see site settings
+
+[Site setting](https://app.netlify.com/sites/gensectimes/settings/general)
+
+>Netlify CMS integration
+
+[Complete tutorial](https://www.netlifycms.org/docs/jekyll/)
+
 >How to make sure git always asks for username password?
 
 ```
