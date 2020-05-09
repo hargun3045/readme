@@ -1,4 +1,13 @@
 Go to code chunks here
+
+>How to round a float value in an f-string
+
+```
+x = 3.14159265
+print(f'pi = {x:.2f}')
+```
+
+
 >Netlify app to see site settings
 
 [Site setting](https://app.netlify.com/sites/gensectimes/settings/general)
