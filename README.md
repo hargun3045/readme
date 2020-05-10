@@ -1,5 +1,57 @@
 Go to code chunks here
 
+> How to find value counts in numpy array?
+
+```
+x = np.array([1,1,1,2,2,2,5,25,1,1])
+unique, counts = np.unique(x, return_counts=True)
+
+print np.asarray((unique, counts)).T
+
+```
+
+>How to implement k nearest neighbors?
+
+```
+X = [[0], [1], [2], [3]]
+y = [0, 0, 1, 1]
+from sklearn.neighbors import KNeighborsClassifier
+neigh = KNeighborsClassifier(n_neighbors=3)
+neigh.fit(X, y)
+```
+```python
+>>> print(neigh.predict([[1.1]]))
+[0]
+>>> print(neigh.predict_proba([[0.9]]))
+[[0.66666667 0.33333333]]
+```
+
+>How to make sns.heatmap show numbers in non-scientific notation?
+
+```
+sns.heatmap(table2,annot=True,cmap='Blues', fmt='g')
+```
+[seaborn showing scientific notation](https://stackoverflow.com/questions/29647749/seaborn-showing-scientific-notation-in-heatmap-for-3-digit-numbers)
+
+>Implementing the confusion matrix from sklearn?
+
+```
+from sklearn.metrics import confusion_matrix
+y_true = [2, 0, 2, 2, 0, 1]
+y_pred = [0, 0, 2, 2, 0, 2]
+confusion_matrix(y_true, y_pred)
+array([[2, 0, 0],
+       [0, 0, 1],
+       [1, 0, 2]])
+```
+
+>How to take a random selection from some points?
+
+```
+sample_indices = np.random.choice(range(100), size = 20)
+```
+
+
 >How to round a float value in an f-string
 
 ```

@@ -1,5 +1,14 @@
 # Pandas helpful code
 
+>How to create a pandas dataframe from a numpy array?
+
+```
+pd.DataFrame(data=data[1:,1:],    # values
+    index=data[1:,0],    # 1st column as index
+    columns=data[0,1:])  # 1st row as the column names
+```
+[Creating pandas dataframe from numpy array](https://stackoverflow.com/questions/20763012/creating-a-pandas-dataframe-from-a-numpy-array-how-do-i-specify-the-index-colum)
+
 >How to vectorize a function to apply on entire array?
 
 [Vectorize function - map](https://stackoverflow.com/questions/35215161/most-efficient-way-to-map-function-over-numpy-array)
