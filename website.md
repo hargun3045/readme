@@ -1,5 +1,26 @@
 ## Code snippets for website building
 
+
+## Set up netlify with fastpages
+
+1. Set up fastpages
+
+2. Add admin index and html
+
+3. Deploy on netlify
+
+4. Enable git-gateway and identity
+
+5. Change ci to avoid unnecessary builds
+
+
+
+## Fastpages
+
+>Make SSH key pair
+
+[website link](https://8gwifi.org/sshfunctions.jsp)
+
 ## Make tutorial
 
 Default goal, the first line of a makefile only will be executed

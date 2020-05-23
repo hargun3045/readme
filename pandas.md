@@ -1,5 +1,30 @@
 # Pandas helpful code
 
+> How to change datatype of a single column?
+
+```
+empDfObj['Marks'] = empDfObj['Marks'].astype('float64')
+```
+[Change datatype of pandas columns](https://thispointer.com/pandas-change-data-type-of-single-or-multiple-columns-of-dataframe-in-python/)
+
+> How to create a pandas dataframe using a dictionary?
+
+```
+hardict = dict(A=listA, B=listB, C=listC)
+df = pd.DataFrame(hardict)
+```
+
+>How to create a pandas dataframe using a list?
+
+```
+harlist=[]
+#creation of dictionaries
+for i in vals:
+    harlist.append(dict(feature=i,B=valB, C=valC)))
+
+df = pd.DataFrame(harlist)
+```
+
 >How to create a pandas dataframe from a numpy array?
 
 ```

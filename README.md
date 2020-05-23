@@ -1,5 +1,119 @@
 Go to code chunks here
 
+### Questions solved during POKER dataset
+
+> How to add conda environment to jupyter notebook?
+
+```
+conda install -c anaconda ipykernel
+python -m ipykernel install --user --name=firstEnv
+```
+
+> How to go back from ONE HOT encoding?
+
+use inverse_transform
+
+```
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
+s = pd.Series(['a', 'b', 'c'])
+le = LabelEncoder()
+ohe = OneHotEncoder(sparse=False)
+s = le.fit_transform(s)
+s = ohe.fit_transform(s.reshape(-1,1))
+print(s)
+```
+
+> How to change learning rate in keras?
+
+```
+from keras.callbacks import LearningRateScheduler
+
+# This is a sample of a scheduler I used in the past
+def lr_scheduler(epoch, lr):
+    decay_rate = 0.85
+    decay_step = 1
+    if epoch % decay_step == 0 and epoch:
+        return lr * pow(decay_rate, np.floor(epoch / decay_step))
+    return lr
+```
+
+```
+callbacks = [LearningRateScheduler(lr_scheduler, verbose=1)]
+
+model = build_model(pretrained_model=ka.InceptionV3, input_shape=(224, 224, 3))
+history = model.fit(train, callbacks=callbacks, epochs=EPOCHS, verbose=1)
+```
+
+[How to change learning rate in keras? ](https://stackoverflow.com/questions/59737875/keras-change-learning-rate)
+
+> How to smoothen labels in keras?
+
+Define a custom loss function
+```
+tf.keras.losses.CategoricalCrossentropy(
+    from_logits=False, label_smoothing=0, reduction=losses_utils.ReductionV2.AUTO,
+    name='categorical_crossentropy'
+)
+```
+
+[Label smoothening detailed tutorial](https://www.pyimagesearch.com/2019/12/30/label-smoothing-with-keras-tensorflow-and-deep-learning/)
+
+> How to unzip a file using command line?
+
+```
+unzip file.zip
+```
+
+> How to make class predictions using keras model?
+
+```
+ynew = model.predict_classes(Xnew)
+```
+
+[detailed post on predictions](https://machinelearningmastery.com/how-to-make-classification-and-regression-predictions-for-deep-learning-models-in-keras/)
+
+> Specify type of optimiser in keras?
+
+```
+tf.keras.optimizers.Adam(
+    learning_rate=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-07, amsgrad=False,
+    name='Adam', **kwargs
+)
+```
+
+
+> How to add dropout in keras?
+```
+model.add(Dropout(0.2, input_shape=(60,)))
+```
+[Detailed post](https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/)
+
+> How to shade area in matplotlib?
+
+```
+ax.axhspan(y1, y2, facecolor=c, alpha=0.5)
+```
+OR 
+
+```
+ax.hline(y1, color=c)
+ax.hline(y2, color=c)
+ax.fill_between(ax.get_xlim(), y1, y2, color=c, alpha=0.5)
+
+```
+
+
+>How to get default view after calling seaborn?
+
+```
+plt.style.available # Plots available
+plt.style.use('classic')
+```
+
+[avoid seaborn influencing matplotlib plots](https://stackoverflow.com/questions/54885636/avoid-seaborn-influencing-matplotlib-plots)
+
 > How to find value counts in numpy array?
 
 ```
