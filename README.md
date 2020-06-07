@@ -1,5 +1,7 @@
 Go to code chunks here
 
+https://stackoverflow.com/questions/58265156/output-of-hidden-layer-for-every-epoch-and-storing-that-in-a-list-in-keras
+
 ### Questions solved during POKER dataset
 
 > How to add conda environment to jupyter notebook?

@@ -1,6 +1,191 @@
 ## A dump of Harvard stats course
 
+### Week 7 concepts
+
+> Reversibility?
+
+Q is the transition matrix of a Markov chain.
+
+Suppose there is an **$s$** such that 
+$s = (s_1,...,s_M)$ with $s_i\geq0, \sum_is_i=1$ and
+
+$$s_iq_{ij}=s_jq_{ji}$$
+for all states $i$ & $j$.
+This is the reversibility condition
+
+> Reversible implies stationary
+
+1. If Q is symmetric, then the uniform distribution is stationary
+
+2. If Q is doubly stochastic, then the uniform distribution is stationary
+
+3. If markov chain is random walk on an undirected network then distribution is proportional to the degree sequence of the network
+
+4. If Markov chain is birth-death chain, then the stationary distribution can be constructed such that $s_iq_{ij}=s_jq_{ji}$
+
+
+```
+A nonnegative matrix such that the row sums and the column sums are all equal to  1  is called a doubly stochastic matrix
+```
+> Google Page Rank mathematics
+
+PageRank is the unique stationary distribution of the matrix $G = \alpha Q + (1-\alpha) \frac{1}{M}*J,$
+
+[Page Rank Explanation - Cornell Math](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html)
+
+> Stationary distribution
+
+$sQ=s$
+
+The marginal distribution does not change as we move forward in time
+
+```NOTE:```
+A Markov chain whose initial distribution is the stationary distribution  𝐬  will stay in the stationary distribution forever
+
+### Convergence
+
+If a markov chain is irreducible and aperiodic - Then 
+$P(X_n = i)$ converges to $s_i$ as $n\to{inf}$
+
+### Existence and Uniqueness
+
+Finite state space - It exists
+
+Irreducible markov chain - It is unique (Perron-Frobenius theorem)
+
+> Irreducible Markov Chain is one in which you can go from any i to any j
+
+All states are recurrent in an irreducible markov chain with finite state space 
+
+> Classification of states
+
+### Recurrent
+
+In the long run, no state is eventually abandoned
+
+![](https://courses.edx.org/assets/courseware/v1/00dd54b801f70b3bd954da8e252868f8/asset-v1:HarvardX+STAT110x+1T2020+type@asset+block/7_chain1.png)
+
+### Transient
+
+Number of returns to a transient state is geometric
+
+![](https://courses.edx.org/assets/courseware/v1/bec46639700a9710a042b294ad3caf28/asset-v1:HarvardX+STAT110x+1T2020+type@asset+block/7_chain2.png)
+
+> Marginal distribution of $X_n$
+
+To find this, take the distribution of $X_0$ and matrix multiply with $Q^n$
+
+Irreducible markov chain - If for every i,j in the transition matrix, i,j entry is non-zero for some finite n.
+
+Markov chains
+
+The  𝑛 -step transition probability from  𝑖  to  𝑗  is the probability of being at  𝑗  exactly  𝑛  steps after being at  𝑖 .
+
+$q^{(n)}_{ij} = P(X_n = j|X_0 = i)$
+
+> Transition Matrix
+
+The matrix that gives the probability of going from state i to state j
+
+
+### Week 6 concepts
+
+> Useful properties of conditional expectation
+
+* If  𝑋  and  𝑌  are independent, then  𝐸(𝑌|𝑋)=𝐸(𝑌) 
+* For any function  ℎ ,  𝐸(ℎ(𝑋)𝑌|𝑋)=ℎ(𝑋)𝐸(𝑌|𝑋)
+* $𝐸(𝑌1+𝑌2|𝑋)=𝐸(𝑌1|𝑋)+𝐸(𝑌2|𝑋)$ , and 𝐸(𝑐𝑌|𝑋)=𝑐𝐸(𝑌|𝑋) for 𝑐 a constant (the latter is a special case of taking out what's known)
+* ```Adams Law``` $E(E(Y|X)) = E(Y)$
+*
+
+### Conditional expectation given a random variable
+
+In the example below, the expectation of a random variable given a random variable is a random variable!
+
+$$E(Y|X) = X/2$$
+
+> Conditional expectation
+
+Analogous to conditional expectation
+
+$$E(Y) = \sum_{i=1}^n E(Y|A_i) P(A_i)$$
+
+> Conditional expectation given an event
+Conditional expectation 𝐸(𝑌|𝐴) given an {event}: let 𝑌 be an r.v., and 𝐴 be an event. If we learn that 𝐴 occurred, our updated expectation for 𝑌, 𝐸(𝑌|𝐴), is computed analogously to 𝐸(𝑌), except using conditional probabilities given 𝐴.
+
+>Conditional expectation given a random variable
+Conditional expectation 𝐸(𝑌|𝑋) given a {random variable}: a more subtle question is how to define 𝐸(𝑌|𝑋), where 𝑋 and 𝑌 are both r.v.s. Intuitively, 𝐸(𝑌|𝑋) is the r.v. that best predicts 𝑌 using only the information available from  𝑋
+
+> It must be normal?
+
+It can be shown that the independence of the sum and difference is a unique characteristic of the Normal! That is, if  𝑋  and  𝑌  are i.i.d. and  𝑋+𝑌  is independent of  𝑋−𝑌 , then  𝑋  and  𝑌  must have Normal distributions.
+
+
+>Multivariate Normal distribution
+
+Why?
+```
+𝑍,𝑊∼i.i.d N(0,1) ,  (𝑍,𝑊)  is Bivariate Normal because the sum of independent Normals is Normal
+```
+
+> Correlation
+$$$$
+
+> Continuous case Joint PDF
+
+```
+If 𝑋 and 𝑌 are continuous with joint CDF 𝐹𝑋,𝑌, their joint PDF is the derivative of the joint CDF with respect to 𝑥 and 𝑦:
+𝑓𝑋,𝑌(𝑥,𝑦)=∂2∂𝑥∂𝑦𝐹𝑋,𝑌(𝑥,𝑦)
+```
+
+> Law of total probability revisted
+
+
+
+But if we only know the marginal PMFs of  𝑋  and  𝑌 , there is no way to recover the joint PMF without further assumptions.
+
+* Joint Distribution
+```
+The joint PMF of discrete r.v.s  𝑋  and  𝑌  is the function  𝑝𝑋,𝑌  given by
+𝑝𝑋,𝑌(𝑥,𝑦)=𝑃(𝑋=𝑥,𝑌=𝑦). 
+The joint PMF of  𝑛  discrete r.v.s is defined analogously
+```
+
+* Marginal distribution
+```
+For discrete r.v.s 𝑋 and 𝑌, the marginal PMF of 𝑋 is
+𝑃(𝑋=𝑥)=∑𝑦𝑃(𝑋=𝑥,𝑌=𝑦).
+The marginal PMF of 𝑋 is the PMF of 𝑋, viewing 𝑋 individually rather than jointly with 𝑌. The above equation follows from the axioms of probability (we are summing over disjoint cases). The operation of summing over the possible values of 𝑌 in order to convert the joint PMF into the marginal PMF of 𝑋 is known as marginalizing out  𝑌
+```
+* Conditional distribution
+* Covariance
+* Correlation
+* Multivariate Normal distribution
+* Adam's Law
+* Eve's Law
+
+
+## Joint distribution
+> Also called multivariate 
+
 ### Week 5 concepts
+
+> What is the memory less property?
+
+
+
+> What is the mean and the variance of a standard normal distribution?
+
+[Just integrate baby](https://courses.edx.org/courses/course-v1:HarvardX+STAT110x+1T2020/courseware/28ff19f7be634e71a4aea103653b0608/9c707d053d854a98b3cc43e1353f7d32/?activate_block_id=block-v1%3AHarvardX%2BSTAT110x%2B1T2020%2Btype%40sequential%2Bblock%409c707d053d854a98b3cc43e1353f7d32)
+
+> What is a poisson approximation?
+
+If you have many events, each with a minute probability, and weakly dependent, then the sum of those events can be approximated to Pois(𝜆)
+
+
+
+
+
 
 Law of the Unconscious Statistician
 ```
@@ -125,3 +310,18 @@ Birthday problem
 
 
 [Latex notation](https://courses.edx.org/courses/course-v1:HarvardX+STAT110x+1T2020/courseware/1450d9b731444cb1879e9ae02f1a7cd2/f75bb8ffa8784f18a1838e723c63c1f8/6?activate_block_id=block-v1%3AHarvardX%2BSTAT110x%2B1T2020%2Btype%40html%2Bblock%40c916494eacd54fc8a5a4713e9ecac484)
+
+
+#### Bothering questions
+
+1. What is the fundamental bridge?
+
+2. What is the Vandermod identity?
+
+3. Geometric random variable only takes finite values?
+
+4. What is the Markov property?
+
+5. What is a random walk?
+
+6. What is an undirected network?
