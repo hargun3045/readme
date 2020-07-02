@@ -1,6 +1,36 @@
 Go to code chunks here
 
+## How to delete multiple github repos?
+
+Go to ```https://repo-sweeper.herokuapp.com/```
+
+Details in this post: [Delete multiple repos](https://medium.com/@taylorjayoung/the-easiest-way-to-delete-multiple-github-repositories-at-once-e71e16734b59)
+
+### Jupyter lab
+
+> How to use keyboard shortcuts jupyter lab?
+```
+1. Open Advanced Settings Editor under the Settings tab, or command , in Mac.
+2. Navigate to Keyboard Shortcuts. You should see the screen plalanne answered with.
+3. Re-open your notebook and test if it works as intended.
+You can customize more keys in this fashion as long as it is defined here on GitHub. For the most part, all that you need are the command IDs starting line 72.
+```
+
+
+What is np.argsort?
+
+Gives an array of sorted positions
+
 https://stackoverflow.com/questions/58265156/output-of-hidden-layer-for-every-epoch-and-storing-that-in-a-list-in-keras
+
+> Pandoc
+
+How to convert .doc to .md
+
+```
+pandoc -o name.md --extract-media=name/ name.docx -w gfm --atx-headers --columns 9999
+
+```
 
 ### Questions solved during POKER dataset
 

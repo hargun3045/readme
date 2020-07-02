@@ -172,6 +172,7 @@ The marginal PMF of 𝑋 is the PMF of 𝑋, viewing 𝑋 individually rather th
 
 > What is the memory less property?
 
+The distribution of the weight time, after already waiting for a certain amount of time, is the same as if one had not waited (with the same coefficient)
 
 
 > What is the mean and the variance of a standard normal distribution?
@@ -202,6 +203,40 @@ There is a one-to-one correspondence between events and indicator r.v.s, and the
 
 ### Week 4 concepts
 
+### Poisson Process
+
+A poisson process is defined as:
+
+1. Number of arrivals in an interval $t$ is ${Pois}(\lambda t)$ random variable
+
+2. Number of arrivals in disjoint intervals are independent
+
+Connection between Poisson distribution and exponential distribution
+
+### Count-time duality
+$T_1 > t$  is the same event as  $N_t = 0$
+
+Common types of continuous distributions
+
+1. Uniform distribution
+
+In studying Uniform distributions, a useful strategy is to start with an r.v. that has the simplest Uniform distribution, figure things out in the friendly simple case, and then use a location-scale transformation to handle the general case
+
+### Universality of the Uniform
+```
+Let 𝐹 be a CDF which is a continuous function and strictly increasing on the support of the distribution. This ensures that the inverse function 𝐹inverse exists, as a function from (0,1) to ℝ. We then have the following results.
+
+Let 𝑈∼Unif(0,1) and 𝑋=𝐹−1(𝑈). Then 𝑋 is an r.v. with CDF 𝐹.
+Let 𝑋 be an r.v. with CDF 𝐹. Then 𝐹(𝑋)∼Unif(0,1)
+```    
+2. Normal distribution
+
+3. Exponential distribution
+
+An important way in which continuous r.v.s differ from discrete r.v.s is that for a continuous r.v.  𝑋 ,  𝑃(𝑋=𝑥)=0  for all  𝑥 . This is because  𝑃(𝑋=𝑥)  is the height of a jump in the CDF at  𝑥 , but the CDF of  𝑋  has no jumps! Since the PMF of a continuous r.v. would just be 0 everywhere, we work with a PDF instead
+
+
+
 > What is sum of independent normals?
 
 It's Normal with mean as sum of means and std deviation as sum of std deviation squared
@@ -212,7 +247,7 @@ It's Normal with mean as sum of means and std deviation as sum of std deviation 
 
 > What is location-scaling?
 
-$$Y = \sigma*X + \mu$$ 
+$$Y = aX + b$$ 
 
 NOTE:
 
@@ -235,6 +270,57 @@ An r.v. has a continuous distribution if its CDF is differentiable. We also allo
 
 ### Week 3 concepts
 
+### Conditinal Independence does *not* mean independence
+
+Mystery opponent
+
+### Independence does *not* mean conditional independence
+
+Matching penniess
+
+Independence of Random variables
+
+Random variables $X$ and $Y$ are said to be independent if:
+
+$$P(X \leq x, Y \leq y) = P(X \leq x) P(Y \leq y)$$
+
+> Three ways to describe a distribution?
+
+1. Probability Mass Function 
+
+2. Cumulative Distribution Function 
+
+3. Story of the distribution
+
+Bernoulli - Success of failure
+Binomial - Number of successeses (IID Bern)
+Hypergeometric - Number of successes but with replacement
+
+> What is a random variable?
+
+Numerical summaries of the experiment
+
+First ask, what is the experiment?
+
+> What is indicator random variable?
+
+
+The indicator random variable of an event  𝐴  is the r.v. which equals 1 if  𝐴  occurs and 0 otherwise. We will denote the indicator r.v. of  𝐴  by  𝐼𝐴  or  𝐼(𝐴) . Note that $I_A\sim$ Bern($p$) with  𝑝=𝑃(𝐴)
+
+> Story of the Binomial distribution?
+
+n independent Bernoulli trails
+
+> How to imagine the hypergeometric distribution?
+
+Just think of sampling without replacement
+
+$PMF$ can be thought of from naïve probability definition
+
+
+### Function of random variable is a random variable
+
+
 
 > Independence of random variables
 
@@ -250,7 +336,9 @@ We will often work with random variables that are independent and have the same 
 
 >Categorical errors
 
-To help avoid being categorically wrong, always think about what category an answer should have
+To help avoid being categorically wrong, always think about what category an answer should have.
+
+We can think of the distribution of a random variable as a map or blueprint describing the r.v. Just as different houses can share the same blueprint, different r.v.s can have the same distribution, even if the experiments they summarize, and the sample spaces they map from, are not the same.
 
 > Cumulative distribution function
 
@@ -281,6 +369,12 @@ Knowing the PMF of a discrete r.v. determines its distribution.
 
 ### Week 2 concepts
 
+## Conditioning is the soul of statistics
+
+> All probabilities are conditional
+
+### Pairwise independent does not mean independent
+
 ```
 Independence is completely different from disjointness. If  𝐴  and  𝐵  are disjoint, then  𝑃(𝐴∩𝐵)=0 , so disjoint events can be independent only if  𝑃(𝐴)=0  or  𝑃(𝐵)=0 . Knowing that  𝐴  occurs tells us that  𝐵  definitely did not occur, so  𝐴  clearly conveys information about  𝐵
 ```
@@ -295,13 +389,67 @@ To state this formally, let  𝐹  be the event that we've chosen the fair coin,
 
 ### Week 1 concepts
 
-Sampling with replacement
+#### How to count?
+
+* Multiplication rule
+
+What does $a*b$ mean?
+
+It means we $\sum_a b$ or simpler $b+b+b+b+... $ 
+
+That is what a compound experiment is!
+
+* **Sampling with replacement**
+
+Extension of the multiplication rule to a compound experiment, consisting of k experiments and each identical.
+
+The tree grows with each additional experiment, with the same number of options at each level
+
+* **Sampling without replacement**
+
+Extension of the multiplication rule to a compound experiment, in which each sub-experiment has one less outcome.
+
+The tree grows with each additional experiment, but with one less option at each level
+
+#### It doesn't matter whether the same flavors are available on a cake cone as on a waffle cone. What matters is that there are exactly 3 flavor choices for each cone choice
+
+#### Birthday problem
+
+```
+def birthday(n,k):
+    return 1 - pr(n,k)/(n**k)
+
+# We look for the complement question - What's the chance of two people not having a birthday
+
+vals = []
+for i in range(1,100):
+    vals.append(birthday(365,i))
+
+fig, ax = plt.subplots(figsize = (12,4))
+ax.plot(range(1,100),vals,'x')
+ax.plot([0,100],[0.5,0.5],'k--')
+```
+
+### What is a combination?
+
+* $n\choose k$ is the number of unqiue subsets of n of size k
+
+* One way to get there is to find ordered subsets of size k, which is $n!/n-k!$ and then divide by the overcounting, and make it unordered
+
+Vandermonde's indentity:
+
+$${r+d \choose k} = \sum_{j=0}^k {r \choose j}{d \choose k-j}$$
+
+Story proof:
+$r$ Republicans and $d$ Democrats contest for $k$ house seats. What are the total number of possible selections?
+
+
 
 Sampling without replacement
 
 Permutations
 
-Birthday problem
+
 
 
 [Course syllabus](https://courses.edx.org/courses/course-v1:HarvardX+STAT110x+1T2020/12b16231c4c94b8b994adfdd44d11b97/)
@@ -325,3 +473,7 @@ Birthday problem
 5. What is a random walk?
 
 6. What is an undirected network?
+
+# Week 1
+
+1. Why does the order of team selection doesn't matter?

@@ -1,5 +1,24 @@
 # Pandas helpful code
 
+> Hhow to find 95% confidence interval in a list?
+
+Find the 2.5 percentile and the 97.5 percentile using
+
+```
+(np.percentile(list,2.5), np.percentile(list, 97.5))
+```
+
+> How to build a bootstrap?
+```
+def bootstrap(df):
+    selectionIndex = np.random.randint(len(df), size = len(df))
+    #selectionIndex = np.random.randint(___, size = ___)
+    new_df = df.iloc[selectionIndex]
+    #new_df = df.iloc[___]
+    return new_df
+```
+
+
 > How to change datatype of a single column?
 
 ```
