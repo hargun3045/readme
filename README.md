@@ -1,5 +1,25 @@
 Go to code chunks here
 
+### Seaborn visualisations
+
+[Seaborn strip plot](http://alanpryorjr.com/visualizations/seaborn/stripplot/stripplot/)
+
+> Books to follow
+
+[Think Stats](https://greenteapress.com/wp/think-stats-2e/)
+
+> How to improve machine learning model performance?
+
+1. [This blog](https://machinelearningmastery.com/improve-deep-learning-performance/)
+
+> How to plot multiple bar plots?
+
+[Click on this link here](https://matplotlib.org/examples/api/barchart_demo.html)
+
+> Where are the matplotlib color names?
+
+Click on this [link](https://matplotlib.org/3.1.0/gallery/color/named_colors.html)
+
 ## How to delete multiple github repos?
 
 Go to ```https://repo-sweeper.herokuapp.com/```

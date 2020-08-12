@@ -1,5 +1,19 @@
 # Pandas helpful code
 
+> How to take the complement of a subdataframe?
+
+```
+df[~(df.name=='Hargun')]
+```
+
+Full stackoverflow answer [here](https://stackoverflow.com/questions/14986510/picking-out-elements-based-on-complement-of-indices-in-python-pandas)
+
+> How to normalize a continuous dataframe column?
+```
+normalized_df=(df-df.mean())/df.std()
+```
+
+[Link to answer here](https://stackoverflow.com/questions/26414913/normalize-columns-of-pandas-data-frame#:~:text=You%20can%20apply%20a%20custom%20function%20to%20operate%20the%20DataFrame%20.&text=it%20takes%20mean%20for%20each,is%20the%20normalized%20data%20set.&text=The%20output%20values%20will%20be%20in%20range%20of%200%20and%201.)
 > Hhow to find 95% confidence interval in a list?
 
 Find the 2.5 percentile and the 97.5 percentile using

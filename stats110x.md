@@ -96,7 +96,6 @@ The matrix that gives the probability of going from state i to state j
 * For any function  ℎ ,  𝐸(ℎ(𝑋)𝑌|𝑋)=ℎ(𝑋)𝐸(𝑌|𝑋)
 * $𝐸(𝑌1+𝑌2|𝑋)=𝐸(𝑌1|𝑋)+𝐸(𝑌2|𝑋)$ , and 𝐸(𝑐𝑌|𝑋)=𝑐𝐸(𝑌|𝑋) for 𝑐 a constant (the latter is a special case of taking out what's known)
 * ```Adams Law``` $E(E(Y|X)) = E(Y)$
-*
 
 ### Conditional expectation given a random variable
 
@@ -111,9 +110,11 @@ Analogous to conditional expectation
 $$E(Y) = \sum_{i=1}^n E(Y|A_i) P(A_i)$$
 
 > Conditional expectation given an event
+
 Conditional expectation 𝐸(𝑌|𝐴) given an {event}: let 𝑌 be an r.v., and 𝐴 be an event. If we learn that 𝐴 occurred, our updated expectation for 𝑌, 𝐸(𝑌|𝐴), is computed analogously to 𝐸(𝑌), except using conditional probabilities given 𝐴.
 
 >Conditional expectation given a random variable
+
 Conditional expectation 𝐸(𝑌|𝑋) given a {random variable}: a more subtle question is how to define 𝐸(𝑌|𝑋), where 𝑋 and 𝑌 are both r.v.s. Intuitively, 𝐸(𝑌|𝑋) is the r.v. that best predicts 𝑌 using only the information available from  𝑋
 
 > It must be normal?
@@ -139,8 +140,6 @@ If 𝑋 and 𝑌 are continuous with joint CDF 𝐹𝑋,𝑌, their joint PDF is
 ```
 
 > Law of total probability revisted
-
-
 
 But if we only know the marginal PMFs of  𝑋  and  𝑌 , there is no way to recover the joint PMF without further assumptions.
 
@@ -168,27 +167,33 @@ The marginal PMF of 𝑋 is the PMF of 𝑋, viewing 𝑋 individually rather th
 ## Joint distribution
 > Also called multivariate 
 
-### Week 5 concepts
+## Week 5 concepts
 
-> What is the memory less property?
+[Revisit the discussion on Central Limit Theorem](https://courses.edx.org/courses/course-v1:HarvardX+STAT110x+1T2020/courseware/28ff19f7be634e71a4aea103653b0608/9c707d053d854a98b3cc43e1353f7d32/?activate_block_id=block-v1%3AHarvardX%2BSTAT110x%2B1T2020%2Btype%40sequential%2Bblock%409c707d053d854a98b3cc43e1353f7d32)
 
-The distribution of the weight time, after already waiting for a certain amount of time, is the same as if one had not waited (with the same coefficient)
+### Law of large numbers:
 
+sample mean of n iids tends to the mean of the distribution for large sample size
 
-> What is the mean and the variance of a standard normal distribution?
-
-[Just integrate baby](https://courses.edx.org/courses/course-v1:HarvardX+STAT110x+1T2020/courseware/28ff19f7be634e71a4aea103653b0608/9c707d053d854a98b3cc43e1353f7d32/?activate_block_id=block-v1%3AHarvardX%2BSTAT110x%2B1T2020%2Btype%40sequential%2Bblock%409c707d053d854a98b3cc43e1353f7d32)
-
-> What is a poisson approximation?
-
-If you have many events, each with a minute probability, and weakly dependent, then the sum of those events can be approximated to Pois(𝜆)
+i.e as $n \to \infty$ the random variable $\bar{X}_n$ tends to be a degenerate with value $\mu$ with probability $1$
 
 
+### Central limit theorem
 
+n iids can be approximated by a normal distribution
 
+### Indicator Random Variables
 
+Indicator r.v.s provide a link between probability and expectation; we call this fact the fundamental bridge
 
-Law of the Unconscious Statistician
+The fundamental bridge connects events to their indicator r.v.s, and allows us to express any probability as an expectation
+
+```
+There is a one-to-one correspondence between events and indicator r.v.s, and the probability of an event 𝐴 is the expected value of its indicator r.v. 𝐼𝐴:
+𝑃(𝐴)=𝐸(𝐼𝐴)
+```
+
+### Law of the Unconscious Statistician
 ```
 Theorem 5.5.1 (LOTUS).
 If X is a discrete r.v. and g is a function from R to R, then
@@ -196,10 +201,29 @@ E(g(X))= ∑x g(x)P(X=x),
 where the sum is taken over all possible values of X
 ```
 
-```
-There is a one-to-one correspondence between events and indicator r.v.s, and the probability of an event 𝐴 is the expected value of its indicator r.v. 𝐼𝐴:
-𝑃(𝐴)=𝐸(𝐼𝐴)
-```
+## Expectation
+
+Note though that  𝑋  never equals its mean in this example. This is similar to the fact that the average number of children per household in some country could be 1.8, but that doesn't mean that a typical household has 1.8 children
+
+> What is the memory less property?
+
+The distribution of the weight time, after already waiting for a certain amount of time, is the same as if one had not waited (with the same coefficient    )
+
+
+> What is the mean and the variance of a standard normal distribution?
+
+[Integrate with the definition of Expectation and Variance](https://courses.edx.org/courses/course-v1:HarvardX+STAT110x+1T2020/courseware/28ff19f7be634e71a4aea103653b0608/9c707d053d854a98b3cc43e1353f7d32/?activate_block_id=block-v1%3AHarvardX%2BSTAT110x%2B1T2020%2Btype%40sequential%2Bblock%409c707d053d854a98b3cc43e1353f7d32)
+
+> What is a poisson approximation?
+
+If you have many events, each with a minute probability, and weakly dependent, then the sum of those events can be approximated to Pois(𝜆)
+
+### Poisson distribution
+
+If  𝑋∼Pois(𝜆1) ,  𝑌∼Pois(𝜆2) , and  𝑋  is independent of  𝑌 , then  𝑋+𝑌∼Pois(𝜆1+𝜆2)
+
+
+
 
 ### Week 4 concepts
 
