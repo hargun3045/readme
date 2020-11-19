@@ -1,3 +1,962 @@
+# Terminal 
+
+### Terminal commands
+
+```
+rm -i $(ls | grep google)
+```
+
+[How to remove selected files](https://unix.stackexchange.com/questions/247924/how-do-i-pipe-ls-to-grep-and-delete-the-files-filtered-by-grep)
+
+### Texteditor
+
+`ESC:q!` most important vim command
+
+`1G` - First line
+
+`18G` - 18th line
+
+`\Rose` - searches for Rose in txt file
+
+`dd` - Delete line
+
+`p` - paste deleted line
+
+# Tensorflow
+
+> How to check tensorflow version?
+
+
+Library import statements
+```
+#import tensorflow 
+import tensorflow as tf
+# You can avoid the long names by using
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras import models
+%matplotlib inline
+```
+
+> Custom optimizer 
+optimizer = tf.keras.optimizers.Adam(learning_rate=1e-3)
+
+> Custom loss function
+
+*Important to wrap it around another function*
+```
+# wrapper function to send loss function
+def baseloss(t):
+    
+    with tf.GradientTape() as tape:
+    
+
+#     dx = der_x(t)
+    def custom_loss(x_true,x_pred):
+        x = bundle(t)
+        loss = (dx+x)**2
+        return loss
+    
+    return custom_loss
+```
+
+> Define neural network in `Sequential` itself
+```
+# Define your neural network
+
+mlp = keras.Sequential(
+    [   keras.layers.Input(shape=(1,)),
+        keras.layers.Dense(100, activation=tf.nn.sigmoid,dtype='float32'),
+        keras.layers.Dense(2, activation=keras.activations.linear)
+    ]
+)
+```
+
+> Non-fit training
+
+```
+# Define the loss function
+loss_fn = tf.keras.losses.MSE
+
+# Instantiate an optimizer
+optimizer = tf.keras.optimizers.Adam(learning_rate=1e-3)
+
+# Doing this for at least 100 epochs
+
+# Define number of epochs
+
+num_epochs = 20000
+
+for i in range(epochs):
+
+        # Open a GradientTape
+        
+        with tf.GradientTape() as tape:
+
+            # Forward pass.
+            output = mlp(x)
+
+            # Loss value for this batch.
+            loss = keras.backend.mean(loss_fn(output,targets))
+
+        # Get gradients of weights wrt the loss.
+        gradients = tape.gradient(loss, mlp.trainable_weights)
+
+        # Update the weights of our linear layer.
+        optimizer.apply_gradients(zip(gradients, mlp.trainable_weights))
+
+```
+
+## CNNs
+
+- Terminology
+
+What is a kernel?
+> When we think about a neuron as a single thing that’s moved across the image (or applied in parallel with shared weights), we often call its weights a kernel or filter.
+
+what is a Convolution?
+
+> Convolution starts with two lists of numbers of equal length. Using our existing language, let’s call one list the input values, and the other list the weights. We then multiply the first input and the first weight, the second input and the second weight, and so on. When all the multipli- cations are done, the results are added together, and that’s the result of the operation.
+
+What is 1x1 convolution filter?
+
+> One powerful application of 1×1 convolution is to do feature reduction on the fly
+
+
+[kaggle contest](https://machinelearningmastery.com/introduction-to-regularization-to-reduce-overfitting-and-improve-generalization-error/)
+
+
+
+### Keras validation split in `ImageDataGenerator`
+
+Find answer [here](https://stackoverflow.com/questions/42443936/keras-split-train-test-set-when-using-imagedatagenerator)
+
+
+### Getting google file on colab
+
+```
+gdown https://drive.google.com/uc?id=0B7EVK8r0v71pOXBhSUdJWU1MYUk
+```
+
+More detailed answer [here](https://stackoverflow.com/questions/25010369/wget-curl-large-file-from-google-drive)
+
+
+Useful link for downloading and unzipping files in colab [here](https://buomsoo-kim.github.io/colab/2020/05/04/Colab-downloading-files-from-web-2.md/)
+
+
+### Questions
+
+1. Both of these techniques work on the same general idea: the initial val- ues are random numbers that are chosen according to the number of inputs to the neuron? 
+
+2. 
+
+# Numpy
+
+> Quick ways to make a matrix
+
+`np.random.randn(3,1)`
+
+# Git
+
+[Submodules basic](https://chrisjean.com/git-submodules-adding-using-removing-and-updating/)
+
+
+## Chapter 1
+![](master/chapter1git.png)
+
+## Chapter 2
+![](master/chapter2git.png)
+
+## Chapter 3
+![](master/chapter3git.png)
+
+## Chapter 4
+![](master/chapter4git.png)
+
+### Fish configuration
+``` shell
+function fish_prompt
+    set_color normal
+    # https://stackoverflow.com/questions/24581793/ps1-prompt-in-fish-friendly-interactive-shell-show-git-branch
+    set -l git_branch (git branch 2>/dev/null | sed -n '/\* /s///p')
+    echo -n (whoami)'@'(hostname)':'
+    set_color $fish_color_cwd
+    echo -n (prompt_pwd)
+    set_color normal
+    echo -n '{'
+    set_color purple
+    echo -n "$git_branch"
+    set_color normal
+    echo -n '}'
+    echo -n ' $ '
+end
+```
+
+# Matplotlib
+
+> How to make xticks as multiples of $\pi$
+
+[`ax.set_xticks(np.arange(0, 2*np.pi+0.01, np.pi/4))`](https://stackoverflow.com/questions/40642061/how-to-set-axis-ticks-in-multiples-of-pi-python-matplotlib)
+
+
+## Plot snips
+
+### Plotting images
+
+```
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+```
+
+```
+img = mpimg.imread('German_Shepherd.jpg');
+ax.imshow(img)
+```
+
+Colors:
+
+-   
+- #9FC131FF (greenish)
+- black
+- #FF2F92 (pinkish)
+- #336600 (dark green)
+- #FF9A98 (reddish)
+- #75B594 (greenish)
+
+### Homework 1
+
+1. Header
+
+```
+# Run this cell for more readable visuals 
+large = 22; med = 16; small = 10
+params = {'axes.titlesize': large,
+          'legend.fontsize': med,
+          'figure.figsize': (16, 10),
+          'axes.labelsize': med,
+          'axes.titlesize': med,
+          'axes.linewidth': 2,
+          'xtick.labelsize': med,
+          'ytick.labelsize': med,
+          'figure.titlesize': large}
+plt.style.use('seaborn-whitegrid')
+plt.rcParams.update(params)
+#sns.set_style("white")
+%matplotlib inline
+```
+
+2. EDA plots
+```
+fig.subplots_adjust(hspace =0.5, wspace=0.2)
+```
+
+3. Knn
+
+```
+fig, axs = plt.subplots(4,2, figsize=(20, 20), facecolor='w', edgecolor='k')
+```
+
+```
+# To run a for loop
+axs = axs.ravel()
+```
+
+```
+ax.plot(xtrain, ytrain, '.', alpha=0.7, label='Train',markersize=10,color='#9FC131FF')
+ax.plot(xtest, ytest, '.', alpha=0.7, label='Test',markersize=10,color='darkblue')
+axs.plot(Xline, knn_model.predict(Xline), label='Predicted',color='black', linewidth=2)
+```
+
+4. MSE plot
+
+```
+ax.plot(K, mse_test, 's-', label='Test',color='darkblue',linewidth=2)
+ax.plot(K, mse_train, 's--', label='Train',color='#9FC131FF',linewidth=2)
+ax.set_xlabel(r'$K$ values', fontsize=15)
+ax.set_ylabel('$MSE$', fontsize=15)
+ax.set_title(r'$MSE$')
+```
+
+5. Linear regression
+
+Scatter plot
+```
+plt.scatter(X_train,y_train,color='#FF2F92',label='Train data')
+```
+
+6. Residuals 
+
+```
+plt.axhline(color='black',linestyle='dashed')
+```
+
+7. Barplots
+
+edgecolor='k'
+```
+ax.hist(df[df.gender==i].income, log=True, label = f'Gender type = {gendermap[i]}',alpha=0.4,color = colors[i], bins = 10,density=True,edgecolor='k' )
+```
+
+# Pandas helpful code
+
+> How to one-hot encode?
+```
+pd.get_dummies(X_to_one_hot_encode)
+```
+> How to take the complement of a subdataframe?
+
+```
+df[~(df.name=='Hargun')]
+```
+
+Full stackoverflow answer [here](https://stackoverflow.com/questions/14986510/picking-out-elements-based-on-complement-of-indices-in-python-pandas)
+
+> How to normalize a continuous dataframe column?
+```
+normalized_df=(df-df.mean())/df.std()
+```
+
+[Link to answer here](https://stackoverflow.com/questions/26414913/normalize-columns-of-pandas-data-frame#:~:text=You%20can%20apply%20a%20custom%20function%20to%20operate%20the%20DataFrame%20.&text=it%20takes%20mean%20for%20each,is%20the%20normalized%20data%20set.&text=The%20output%20values%20will%20be%20in%20range%20of%200%20and%201.)
+> Hhow to find 95% confidence interval in a list?
+
+Find the 2.5 percentile and the 97.5 percentile using
+
+```
+(np.percentile(list,2.5), np.percentile(list, 97.5))
+```
+
+> How to build a bootstrap?
+```
+def bootstrap(df):
+    selectionIndex = np.random.randint(len(df), size = len(df))
+    #selectionIndex = np.random.randint(___, size = ___)
+    new_df = df.iloc[selectionIndex]
+    #new_df = df.iloc[___]
+    return new_df
+```
+
+
+> How to change datatype of a single column?
+
+```
+empDfObj['Marks'] = empDfObj['Marks'].astype('float64')
+```
+[Change datatype of pandas columns](https://thispointer.com/pandas-change-data-type-of-single-or-multiple-columns-of-dataframe-in-python/)
+
+> How to create a pandas dataframe using a dictionary?
+
+```
+hardict = dict(A=listA, B=listB, C=listC)
+df = pd.DataFrame(hardict)
+```
+
+>How to create a pandas dataframe using a list?
+
+```
+harlist=[]
+#creation of dictionaries
+for i in vals:
+    harlist.append(dict(feature=i,B=valB, C=valC)))
+
+df = pd.DataFrame(harlist)
+```
+
+>How to create a pandas dataframe from a numpy array?
+
+```
+pd.DataFrame(data=data[1:,1:],    # values
+    index=data[1:,0],    # 1st column as index
+    columns=data[0,1:])  # 1st row as the column names
+```
+[Creating pandas dataframe from numpy array](https://stackoverflow.com/questions/20763012/creating-a-pandas-dataframe-from-a-numpy-array-how-do-i-specify-the-index-colum)
+
+>How to vectorize a function to apply on entire array?
+
+[Vectorize function - map](https://stackoverflow.com/questions/35215161/most-efficient-way-to-map-function-over-numpy-array)
+
+
+>How to make a mask?
+
+```
+mask = np.ones(size, dtype = 'int')
+```
+
+>Get a sampled collection
+
+```
+df.sample(size, replace = False)
+```
+
+>Shuffle data
+
+```
+df.sample(frac=1)
+```
+
+[Stackoverflow - How to shuffle a dataframe?](https://stackoverflow.com/questions/29576430/shuffle-dataframe-rows)
+
+
+>Axis to left side
+
+```
+from matplotlib import pyplot as plt
+
+f = plt.figure()
+ax = f.add_subplot(111)
+ax.yaxis.tick_right()
+plt.plot([2,3,4,5])
+plt.show()
+```
+
+
+>How to customize grids in subplots
+
+```
+fig3 = plt.figure(constrained_layout=True)
+gs = fig3.add_gridspec(3, 3)
+f3_ax1 = fig3.add_subplot(gs[0, :])
+f3_ax1.set_title('gs[0, :]')
+```
+
+[Creating custom gridspaces](https://matplotlib.org/3.2.1/tutorials/intermediate/gridspec.html)
+
+>Make a line chart with bar chart
+
+```
+fig = plt.figure()
+ax = ts.plot(kind="bar")   # barchart
+ax2 = ax.twinx()
+ax2.plot(ax.get_xticks(), df.rolling(10).mean()) #linechart
+```
+[Line chart with bar](https://stackoverflow.com/questions/33239937/python-bar-graph-and-line-graph-in-same-chart-with-pandas-matplotlib)
+>Plot bar chart with ax object
+
+```
+ax.bar(x,y,*params)
+```
+
+
+>Fix bar chart x labels
+
+```
+#set ticks every week
+ax.xaxis.set_major_locator(mdates.WeekdayLocator())
+#set major ticks format
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
+```
+
+[Link to italian blog with solution](https://scentellegher.github.io/programming/2017/05/24/pandas-bar-plot-with-formatted-dates.html)
+
+[Link to blog recommended by italian](https://pbpython.com/effective-matplotlib.html)
+
+>How to combine year, month, date in a single column pandas
+
+```
+df['Date']=pd.to_datetime(df.year*10000+df.month*100+df.day,format='%Y%m%d')
+```
+
+[Combine year month date pandas](https://stackoverflow.com/questions/48155787/how-to-combine-year-month-and-day-columns-to-single-datetime-column)
+
+>How to nicely print a dictionary using json?
+
+```
+import json
+print(json.dumps(dictionary, indent=4, sort_keys=True))
+```
+
+> How to plot a time series
+
+[Number of births per month](https://jakevdp.github.io/PythonDataScienceHandbook/04.09-text-and-annotation.html)
+
+>Choose a dataframe with non-empty column
+
+```
+df = df[df['EPS'].notna()]
+```
+OR
+
+```
+df = df[pd.notnull(df['EPS'])]
+```
+[Remove null values from a column](https://stackoverflow.com/questions/13413590/how-to-drop-rows-of-pandas-dataframe-whose-value-in-a-certain-column-is-nan)
+
+>Make a pandas series as datetime
+
+```
+df['date'] = df['date'].astype('datetime64[ns]')
+```
+
+>Add a name to the index
+
+```
+df.index.name = 'date'
+```
+[How to add an index name](https://stackoverflow.com/questions/18022845/pandas-index-column-title-or-name)
+
+>Mapping a dictionary value to a pandas series
+
+```
+df['continent'] = df.country.map(mapping)
+```
+
+[How to map dictionary values to a pandas series](https://stackoverflow.com/questions/20250771/remap-values-in-pandas-column-with-a-dict)
+
+> How to map or apply values to entire dataframe series?
+
+```
+def square(x):
+    return x ** 2
+s.apply(square)
+```
+[Click here](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.apply.html#pandas.Series.apply) for link to documentation
+
+> How to add gaussian noise to a series
+
+```
+mu, sigma = 0, 0.1 
+# creating a noise with the same dimension as the dataset (2,2) 
+noise = np.random.normal(mu, sigma, [2,2]) 
+print(noise)
+```
+
+[link to](https://stackoverflow.com/questions/46093073/adding-gaussian-noise-to-a-dataset-of-floating-points-and-save-it-python?rq=1) stackoverflow answer
+
+>Change position of a column 
+in a pandas dataframe
+
+Change position of the list
+df = df[[df.columns[-1]] + list(df.columns[:-1])]
+
+Pandas export to csv
+
+```
+df.to_csv(filename, index = False)
+```
+>Drop a column
+
+[How to drop a column](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html	
+)
+
+[Pandas API Quick Reference](https://pandas.pydata.org/pandas-docs/version/0.22.0/api.html)
+
+Quick code snippets
+
+```
+df[['col1','col2']].values
+```
+The above gives a numpy ndarray
+
+**Rename column**
+```
+df.rename(columns = {'old_col':'new_col'}, inplace = True)
+
+```
+
+>Change column positions
+
+```
+cols = df.cols
+
+new_cols = ['a','b','c','d']
+
+df = df[new_cols]
+
+```
+
+**initial setup of dataframe**
+```
+df = pd.read_csv('sales1.csv',header = 0, index_col = False, names = ['title', 'sold','price','royalty'])
+
+```
+
+>The idea of a dataframe is having several named lists in parallel
+
+
+Check if a series is not empty
+```python
+df[df.title.notnull()]
+```
+```
+Sort values by a column
+df.sort_values(by = ["columnname"])
+```
+>Set Index
+
+Helps with speeding up the search
+
+```
+df.set_index('month')
+```
+
+>Groupby
+
+```
+df.groupby(["a"]).size()
+```
+size() considers NaN values
+count() does not [overflow answer](https://stackoverflow.com/questions/33346591/what-is-the-difference-between-size-and-count-in-pandas)
+
+Essentially, what groupby does is it seperates the column into separate groups
+
+>Unstack
+
+Unstack takes you from a complicated series to a dataframe.
+
+```
+s.unstack().fillna()
+```
+
+The main idea is that groupby gives you ways to make a dataframe into a series and unstack gives you a dataframe from a series.
+This wrangling can come handy to make some comparisons.
+
+>Datetime module
+Similar to string
+```
+s.dt.month
+```
+
+>Merge
+
+```
+#Combine to dataframes on some reference
+pd1.merge(pd2, on = ["col1"])
+```
+
+### Plotting
+
+Easiest with a series, so do some groupbys and then plot.
+
+>Exercise 6 handy code
+
+
+First we get the currency as a column
+```
+s['currency'] = s.title.str.extract(r'\((.*)\)').fillna(method = "bfill")
+```
+
+Simple way to get rid of waste entries
+```
+s.dropna(inplace = True)
+```
+
+Get two dataframes one below the other
+```
+s = pd.concat([s,s3], axis = 0)
+```
+
+Assign function for new column
+
+```
+s = s.assign(total=s.price * s.sold)
+```
+
+This groupby gives a datframe, because we are specifying a list of columns
+
+```
+s.groupby(["title","currency"])[["total"]].sum()
+```
+The below code would be a series
+```
+s.groupby(["title","currency"])[["total"]].sum()
+```
+
+# Pytorch Guide
+
+### Links
+
+1. [Custom Loss](https://towardsdatascience.com/minimal-pytorch-subset-for-deep-learning-for-data-scientists-8ccbd1ccba6b#a312)
+
+2. [Deep Learning Differential Equations](https://cloud4scieng.org/2020/06/10/notes-on-deep-learning-and-differential-equations/)
+
+### Concerns
+
+1. Should parameters be trainable in Pavloss?
+
+[Actually cool work](https://cloud4scieng.org/2020/06/10/notes-on-deep-learning-and-differential-equations/)
+
+## Custom Loss function
+
+class HarLoss(nn.Module):
+  def __init__(self):
+    super().__init__()
+
+  def forward(self,x,y):
+
+    loss = (x-y)**2
+    loss = loss.mean()
+    return loss
+
+## Neural Networks
+
+```
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from torch.utils.data import Dataset, Dataloader
+```
+
+> How to zero gradients in a network?
+
+```
+net.zero_grad()
+```
+
+> How to add random dimensions?
+
+```
+sample = torch.randn(1,32,32)
+sample.unsqueeze(0)
+```
+
+### Questions
+
+1. What is 'class inheritance'?
+
+2. What does 'bias' equals true mean?
+
+3. 
+
+## Autograd
+
+### Tracked operations
+
+> How to make a "trainable weight"
+
+```
+x = torch.ones(2, 2, requires_grad=True)
+```
+
+```
+with torch.no_grad():
+
+```
+
+```
+print(x.requires_grad)
+y = x.detach()
+print(y.requires_grad)
+print(x.eq(y).all())
+```
+
+### Questions?
+
+1. What is `.backward()`
+
+2. What is `.grad` attribute?
+
+3. What is `.detach()`?
+
+4. What is `with torch.no_grad():` loop? (Helpful in evaluation time)
+
+5. What is `Function` class?
+
+6. What is an acyclic graph?
+
+7. 
+
+## Tensors
+
+> How to convert tensor from numpy to pytorch?
+
+```
+hara = torch.from_numpy(hara)
+```
+
+> How to make new tensors?
+
+Numpy
+```
+zeros  = np.zeros((4, 4))
+ones   = np.ones((4, 4))
+random = np.random.random((4, 4))
+```
+
+Pytorch
+```
+zeros  = torch.zeros(4, 4)
+ones   = torch.ones(4, 4)
+random = torch.rand(4, 4)
+```
+
+> Reshaping
+
+Numpy
+```
+new_array = array.reshape((8, 2))
+```
+Pytorch
+```
+new_tensor = tensor.view(8, 2)
+```
+
+## Tensor on the GPU
+
+```
+gpu_tensor = tensor.gpu()
+```
+
+> Going to GPU, operation, coming back
+
+```
+# let us run this cell only if CUDA is available
+# We will use ``torch.device`` objects to move tensors in and out of GPU
+if torch.cuda.is_available():
+    device = torch.device("cuda")          # a CUDA device object
+    y = torch.ones_like(x, device=device)  # directly create a tensor on GPU
+    x = x.to(device)                       # or just use strings ``.to("cuda")``
+    z = x + y
+    print(z)
+    print(z.to("cpu", torch.double))       # ``.to`` can also change dtype together!
+
+```
+
+
+### Tensor tutorial
+
+> Adding in place
+
+```
+# adds x to y (inplace)
+y.add_(x)
+```
+
+Exhaustive list of operations can be found [here](https://pytorch.org/docs/stable/torch.html)
+
+### Questions?
+
+1. How to check on the GPU?
+
+
+# Terminal commands
+
+```
+rm -i $(ls | grep google)
+```
+
+[How to remove selected files](https://unix.stackexchange.com/questions/247924/how-do-i-pipe-ls-to-grep-and-delete-the-files-filtered-by-grep)
+
+# Basic python Code snippets
+
+Python debugger
+```
+from IPython.core.debugger import set_trace
+def simulate_election(model, n_sim):
+    set_trace() #Important
+    simulations = np.random.uniform(size=(51, n_sim))
+    obama_votes = (simulations < model.Obama.values.reshape(-1, 1)) * model.Votes.values.reshape(-1, 1)
+    #summing over rows gives the total electoral votes for each simulation
+    return obama_votes.sum(axis=0)
+```
+
+## Debugging tips
+
+step - s 
+next - n
+continue - c
+up/down - u/c
+list - l
+
+
+```
+for i, elem in enumerate(float_list):
+    print(i,elem)
+```
+Enumerate uses default indexing
+
+```
+for i, f in zip(int_list, float_list):
+    print(i, f)
+```
+
+zip uses indexing as specified
+
+>Conditional List comprehension
+
+```
+#incase of only an if condition
+comp_list1 = [2*i for i in squaredlist if i % 3 == 0]
+
+# But for if else
+comp_list2 = [2*1 if i % 3 == 0 else 0 for i in squaredlist]
+```
+
+
+## Numpy
+
+```
+np.mean(list)
+
+np.std(list)
+
+```
+
+Basic Probability
+
+**Something must happen**
+
+$$P(\Omega) =1$$
+
+**Complementary events must have probabilities summing to 1**
+
+Either E happened or didnt. So,
+
+$$P(E) + P(\sim E) = 1$$
+
+**The Multiply/And/Intersection Formula for independent events**: If E and F are independent events, the probability of both events happening together $P(EF)$ or $P(E \cap F)$ (read as E and F or E intersection F, respectively) is the multiplication of the individual probabilities.
+
+$$ P(EF) = P(E) P(F) .$$
+
+
+**The Plus/Or/Union Formula** 
+
+We can now ask the question, what is $P(E+F)$, the odds of E alone, F alone, or both together. Translated into English, we are asking, whats the probability that only the first toss was heads, or only the second toss was heads, or that both came up heads?  Or in other words, what are the odds of at least one heads? The answer to this question is given by the rule:
+
+$$P(E+F) = P(E) + P(F) - P(EF),$$ 
+
+
+
+```
+#np.random.random
+
+2d = np.random.randint(12, size = (3,4))
+2d.max(axis=1)
+
+```
+Axis = 1 means each consideration will be across the column index
+Axis = 0 means each consideration will be across the row index
+
+Numpy note on dimensions
+https://stackoverflow.com/questions/15680593/numpy-1d-array-with-various-shape
+
+### Removing corrupt images
+
+```
+https://opensource.com/article/17/2/python-tricks-artists
+```
+
+### Google colab
+
+[Introductory Video by Van der Plass](https://www.youtube.com/watch?v=inN8seMm7UI&ab_channel=TensorFlow)
+
+Use `cmd + M` to go into cell command mode
+
+Use `cmd + H` for hotkeys
+
+[tips for better colab experience](https://towardsdatascience.com/10-tips-for-a-better-google-colab-experience-33f8fe721b82)
+
+
+### How to change settings for Jupyter RISE?
+
+[rise docs](https://rise.readthedocs.io/en/stable/customize.html?highlight=scroll#how-to-customize)
+
+### How to get all prints in jupyter notebook?
+
+```
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"
+```
+
 Go to code chunks here
 
 ### Seaborn visualisations
