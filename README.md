@@ -1,3 +1,279 @@
+# Working with Images 
+
+> How to display an image using matplotlib?
+
+1. Get the image in an array
+2. Use `plt.imshow(array)`
+
+> How to display one channel image?
+
+
+> Display an image with python?
+
+There are several ways.
+[stackoverflow answer here](https://stackoverflow.com/questions/35286540/display-an-image-with-python)
+
+# Research
+
+> Boosted sampling implementation 
+
+```
+# Initial conditions 
+
+# losses_nobatch = []
+losses= []
+sample_size =128
+batch_size = 32
+boostloss = None
+t_min = 0
+t_max = 2*np.pi
+batch_count1 = 0
+# Network 
+
+mlp = HarNet()
+loss_fn = VanillaLoss()
+optimer = optim.Adam(mlp.parameters(),lr=0.001,betas = (0.9,0.997)) 
+
+for j in range(50):
+
+    num_epochs = 10
+    for i in range(num_epochs):
+        t_tensor = torch.from_numpy(np.random.uniform(t_min,t_max,sample_size)).type(torch.Tensor).view(-1,1)
+        ######################
+        if boostloss == None:
+            batch_size = 2
+        elif 2**(-int(torch.log(boostloss)) - 2) < 1:
+            batch_size = 2
+        else:
+            batch_size = 2**(-int(torch.log(boostloss)) - 2)
+        ######################
+        batchlist = batches(t_tensor,batch_size=batch_size)
+        for batch in batchlist:
+            loss = loss_fn(mlp, batch)
+            loss.backward()
+            optimer.step()
+            optimer.zero_grad()
+            batch_count1 +=1
+        boostloss = loss_fn(mlp,t_tensor).detach()
+        losses.append(boostloss)
+```
+
+> Batching implementation 
+
+```
+def batches(train_examples_t,batch_size=16):
+    batched = []
+    train_examples_t = train_examples_t.reshape((-1, 1))
+    n_examples_train = train_examples_t.shape[0]
+    idx = np.random.permutation(n_examples_train)
+
+    batch_start, batch_end = 0, batch_size
+    while batch_start < n_examples_train:
+        if batch_end > n_examples_train:
+            batch_end = n_examples_train
+        batch_idx = idx[batch_start:batch_end]
+        ts = train_examples_t[batch_idx]
+        batched.append(ts)
+        batch_start += batch_size
+        batch_end += batch_size
+    return batched
+```
+
+> PPppBoost implementation 
+
+```
+def boost_sample_unbiased(ts,loss,prev, num_points = 16,knob=0,memory=0,bins=10,t_min=0,t_max=2*np.pi):
+    if loss is None:
+        return torch.from_numpy(np.random.uniform(t_min,t_max,num_points)).type(torch.Tensor).view(-1,1), bins*[int((num_points*knob)/(bins))]
+    else:
+        f = interp1d(ts.numpy().reshape(-1,), loss.detach().numpy().reshape(-1,))
+        tinterp = np.linspace(ts.min().numpy(),ts.max().numpy(),bins)
+        # fix the sample size
+        
+#         samplesizes = [int(i*knob)  for i in 2*math.ceil(num_points/bins)*(1 - (f(tinterp)/np.sum(f(tinterp))))]
+        samplesizes = [int(i*knob)  for i in num_points*((f(tinterp)/np.sum(f(tinterp))))]        
+        samplesizes[samplesizes.index(max(samplesizes))] = max(samplesizes)+ int(num_points*knob) - sum(samplesizes)
+        samplesizes = [int(i*(1-memory) + memory*j) for i,j in zip(samplesizes,prev)]        
+        intervals = [((i*(t_max - t_min)/bins) + t_min) for i in range(bins+1)]         
+        t_sample = []
+        for i,val in enumerate(intervals[:-1]):
+            t_sample.extend(np.random.uniform(val,intervals[i+1],samplesizes[i]))
+        if len(t_sample) < num_points:
+            t_sample.extend(np.random.uniform(t_min,t_max,num_points-len(t_sample)))        
+#             t_sample.extend(np.random.uniform(ts.min(),ts.max(),num_points-len(t_sample)))        
+        t_sample = np.array(t_sample)  
+        t_tensor= torch.from_numpy(t_sample).view(-1,1).type(torch.Tensor)
+        return t_tensor.view(-1,1),samplesizes
+```
+> Plotting the loss over t
+
+```
+t_plot, loss_plot = list(zip(*sorted(zip(*(t_tensor,boostloss.detach().numpy())))))
+fig, ax = plt.subplots(figsize = (10,6))
+ 
+ax.set_xlabel('$t$',fontsize=12)
+ax.set_ylabel('$Loss$',fontsize=14)
+ax.plot(t_plot, [2*i for i in loss_plot],color = 'k',label = 'Loss over $t$')
+ax.set_xticks(np.arange(0, 2*np.pi+0.01, np.pi/2))
+labels = ['$0$', r'$\pi/2$', r'$\pi$'
+          , r'$3\pi/2$', r'$2\pi$']
+ax.set_xticklabels(labels)
+ax.legend()
+```
+
+> Reparametrization function 
+
+```
+def repar(t,nn):
+    return 1. + torch.mul((1-torch.exp(-t))**2, nn(t))
+```
+
+> Taking the nth derivative 
+
+def nth_derivative(f, wrt, n):
+
+    for i in range(n):
+
+        grads = grad(list(f), wrt, create_graph=True, allow_unused=False)[0]
+        f = grads
+        if grads is None:
+            print('bad grad')
+            return torch.tensor(0.)
+    return grads
+
+
+> Customized deep neural network in pytorch
+
+```
+class HarNet(nn.Module):
+
+    def __init__(self):
+        super().__init__()
+#         torch.manual_seed(22)
+        self.linear1 = nn.Linear(1,32) 
+#         torch.manual_seed(22)
+        self.linear2 = nn.Linear(32,32)
+#         torch.manual_seed(22)
+        self.linear3 = nn.Linear(32,1)
+
+  
+    def forward(self, x):
+
+        x = torch.tanh(self.linear1(x)) 
+        x = torch.tanh(self.linear2(x))
+        x = self.linear3(x)
+        return x
+```
+
+> Custom loss function in pytorch
+
+
+```
+class VanillaLoss(nn.Module):
+    def __init__(self):
+        super().__init__()
+        
+    
+    # Forward method
+    def forward(self,net, batch,eta=0,delta=1):
+        
+        # Vanilla Loss
+        batch.requires_grad_(True)
+        x = repar(batch,net)
+        d2x = nth_derivative(x,batch,n=2)
+        loss = (d2x+x)**2
+        loss = loss.mean()
+        batch.requires_grad_(False)
+
+        return loss
+
+```
+
+> Tensor Dataset and Train dataloader
+```
+train_data = TensorDataset(t_tensor, x_tensor)
+train_loader = DataLoader(dataset=train_data, batch_size=80, shuffle=True)
+```
+
+> Pytorch .fit implementation
+
+```
+def make_train_step(model, loss_function, optimizer, eta=0,delta=1):
+    def train_step(t):
+        
+        model.train()
+        loss = loss_function(model,t,eta=eta,delta=delta)
+        loss.backward()
+        optimizer.step()
+        loss = loss_function(model,t)
+        optimizer.zero_grad()
+        
+        return loss.item()
+    return train_step
+```
+
+> Training example in pytorch
+
+```
+n_epochs = 80
+for epoch in range(n_epochs):
+    for t_batch, x_batch in train_loader:
+        loss = train_step(t_batch)
+    losses.append(loss)
+```
+
+> Recording a video of loss over t vs sampling distribution
+
+```
+fig,axes = plt.subplots(1,1,figsize=(7,5))
+camera = Camera(fig)
+
+
+losses = []
+sample_size = 128
+bins = 12
+t_tensor = None
+boostloss = None
+prev_sample = bins*[0]
+num_epochs = 5
+num_reps = 100
+
+for rep in range(num_reps):
+    
+    for epoch in range(num_epochs):
+        t_tensor,prev_sample  = boost_sample_unbiased(t_tensor,boostloss,prev_sample, num_points=sample_size,knob=1,memory=0.9,bins=bins)
+        batchlist = batches(t_tensor,batch_size=32)
+        for batch in batchlist:
+            loss = loss_fn(mlp, batch)
+            loss.backward()
+            optimer.step()
+            optimer.zero_grad()
+        t_tensor = torch.from_numpy(np.random.uniform(0,2*np.pi,sample_size)).type(torch.Tensor).view(-1,1)
+        losses.append(loss_fn(mlp,t_tensor))
+
+    t_tensor.requires_grad_(True)
+    x = repar(t_tensor,mlp)
+    d2x = nth_derivative(x,t_tensor,n=2)
+    boostloss = (d2x+x)**2
+    t_tensor.requires_grad_(False);
+
+    t2,prev_sample  = boost_sample_unbiased(t_tensor,boostloss,prev_sample, num_points=sample_size,knob=1,memory=0.9,bins=bins)    
+    t_plot, loss_plot = list(zip(*sorted(zip(*(t_tensor,boostloss.detach().numpy())))))
+
+
+    axes.plot(t_plot, [4*i for i in loss_plot],color = '#575759')
+
+    axes.hist(t2.numpy(),density=True,color = '#385ed1',bins=8,alpha=0.5,label = 'knob=1')
+    axes.set_xlabel('$t$',fontsize=12)
+    axes.set_ylabel('$x$',fontsize=12)
+    axes.set_ylim([0,2])
+    t = axes.plot([-0.01,0.01],[-2,-2],'-',color ='k')
+    axes.legend(t,[f'Epoch: {5*(rep+1)} knob=1,memory=0.9'],fontsize=14,loc='upper left')
+    axes.set_title('Sampling over loss',fontsize=14)    
+    
+    camera.snap()
+```
+
 # Terminal 
 
 ### Terminal commands
@@ -837,6 +1113,13 @@ rm -i $(ls | grep google)
 [How to remove selected files](https://unix.stackexchange.com/questions/247924/how-do-i-pipe-ls-to-grep-and-delete-the-files-filtered-by-grep)
 
 # Basic python Code snippets
+
+
+> How to list only top level directories in Python?
+
+```
+[ name for name in os.listdir(thedir) if os.path.isdir(os.path.join(thedir, name)) ]
+```
 
 Python debugger
 ```
