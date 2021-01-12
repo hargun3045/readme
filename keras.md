@@ -37,3 +37,8 @@ y = model(x)
 
 [Sequential API doc](https://www.tensorflow.org/guide/keras/sequential_model)
 
+
+> How to get activations of the hidden layers? 
+
+
+> How to get activations of hidden layers using functional API
