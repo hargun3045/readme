@@ -1,5 +1,11 @@
 # Code snippets 
 
+> What is an RNN Cell?
+
+An ability to make custom rnn cells.
+
+More [here](https://becominghuman.ai/understanding-tensorflow-source-code-rnn-cells-55464036fc07)
+
 > How to plot intermediate layer activations?
 ```
 def plot_activation(model, x_train):
