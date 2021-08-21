@@ -1,13 +1,3 @@
-# Working with Images 
-
-> How to display an image using matplotlib?
-
-1. Get the image in an array
-2. Use `plt.imshow(array)`
-
-> How to display one channel image?
-
-
 > Display an image with python?
 
 There are several ways.
