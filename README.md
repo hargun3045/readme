@@ -375,19 +375,6 @@ for i in range(epochs):
 
 ## CNNs
 
-- Terminology
-
-What is a kernel?
-> When we think about a neuron as a single thing that’s moved across the image (or applied in parallel with shared weights), we often call its weights a kernel or filter.
-
-what is a Convolution?
-
-> Convolution starts with two lists of numbers of equal length. Using our existing language, let’s call one list the input values, and the other list the weights. We then multiply the first input and the first weight, the second input and the second weight, and so on. When all the multipli- cations are done, the results are added together, and that’s the result of the operation.
-
-What is 1x1 convolution filter?
-
-> One powerful application of 1×1 convolution is to do feature reduction on the fly
-
 
 [kaggle contest](https://machinelearningmastery.com/introduction-to-regularization-to-reduce-overfitting-and-improve-generalization-error/)
 
